@@ -35,9 +35,10 @@ arraySorting ${array[@]}
 }
 function arraySorting(){
 for (( k=${#array[@]}; k>=0; k-- ))
-do
-	
+do	
 	echo "${array[k]}"
+	#alternative prime numbers
+	((k--))
 done
 }
 initialization

@@ -33,6 +33,7 @@ do
 done
 arraySorting ${array[@]}
 primeUnitsPlace ${array[@]}
+checkPalindrome ${array[@]}
 }
 function arraySorting(){
 for (( k=${#array[@]}; k>=0; k-- ))
@@ -50,6 +51,23 @@ do
 	if [ $variable -eq 1 ]
 	then
 		echo "prime numbers which has 1 in init units place" $value
+	fi
+done
+}
+function checkPalindrome(){
+for (( counter=5; counter<=${#array[@]}; counter++ ))
+do
+	revers=0
+	value=${array[counter]}
+	while [ $value -gt 0 ]
+	do
+		reminder=$(($value%10))
+		revers=$(( ($revers*10)+$reminder))
+		value=$(($value/10))
+	done
+	if [ $revers -eq ${array[counter]} ]
+	then
+		echo "prime palindromes are " ${array[counter]}
 	fi
 done
 }

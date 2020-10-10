@@ -32,6 +32,7 @@ do
 	((counter++))
 done
 arraySorting ${array[@]}
+primeUnitsPlace ${array[@]}
 }
 function arraySorting(){
 for (( k=${#array[@]}; k>=0; k-- ))
@@ -39,6 +40,17 @@ do
 	echo "${array[k]}"
 	#alternative prime numbers
 	((k--))
+done
+}
+function primeUnitsPlace(){
+variable=0
+for value in ${array[@]}
+do
+	variable=$(($value%10))
+	if [ $variable -eq 1 ]
+	then
+		echo "prime numbers which has 1 in init units place" $value
+	fi
 done
 }
 initialization

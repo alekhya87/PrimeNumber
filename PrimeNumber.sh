@@ -9,10 +9,9 @@ checkPrime $((range))
 }
 
 function checkPrime(){
-count=1
-counter=2
+count=0
 range=$1
-while [ $count -le $range ]
+for (( counter=700; $counter<=$(($1+1)); counter++ ))
 do
 	flag=0
 	for (( j=2; j<=$(($counter/2)); j++ ))
@@ -29,46 +28,14 @@ do
 		array[count]=$counter
 		((count++))
 	fi
-	((counter++))
 done
-arraySorting ${array[@]}
-primeUnitsPlace ${array[@]}
-checkPalindrome ${array[@]}
+arrayReversOrder ${array[@]}
 }
-function arraySorting(){
+function arrayReversOrder(){
 for (( k=${#array[@]}; k>=0; k-- ))
 do	
 	echo "${array[k]}"
 	#alternative prime numbers
-	((k--))
-done
-}
-function primeUnitsPlace(){
-variable=0
-for value in ${array[@]}
-do
-	variable=$(($value%10))
-	if [ $variable -eq 1 ]
-	then
-		echo "prime numbers which has 1 in init units place" $value
-	fi
-done
-}
-function checkPalindrome(){
-for (( counter=5; counter<=${#array[@]}; counter++ ))
-do
-	revers=0
-	value=${array[counter]}
-	while [ $value -gt 0 ]
-	do
-		reminder=$(($value%10))
-		revers=$(( ($revers*10)+$reminder))
-		value=$(($value/10))
-	done
-	if [ $revers -eq ${array[counter]} ]
-	then
-		echo "prime palindromes are " ${array[counter]}
-	fi
 done
 }
 initialization
